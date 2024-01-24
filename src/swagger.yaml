@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: API Data Transformer
+  description: API Description
+  version: 1.0.0
+  contact:
+    name: Luis Carvajal
+    email: luiscarvajal2208@gmail.com
+
+paths:
+  /:
+    get:
+      summary: Check health
+      tags:
+        - Health
+      responses:
+        200:
+          description: Object response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: "Welcome"
+
+  /files/data:
+    get:
+      summary: Get file data or transform all data
+      tags:
+        - File Data
+      parameters:
+        - name: fileName
+          in: query
+          description: Name of the file to retrieve data from (optional)
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: File data or transformed data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  file:
+                    type: string
+                    example: "test2.csv"
+                  lines:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        text:
+                          type: string
+                          example: "text"
+                        hex:
+                          type: string
+                          example: "hex"
+                        number:
+                          type: integer
+                          example: 123
+
+  /files/list:
+    get:
+      summary: Get the list of available files
+      tags:
+        - File List
+      responses:
+        200:
+          description: List of files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: "test1.csv"

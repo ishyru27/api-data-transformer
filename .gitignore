@@ -1,0 +1,7 @@
+.env
+.scannerwork
+package-lock.json
+node_modules
+coverage
+reports
+.vscode
